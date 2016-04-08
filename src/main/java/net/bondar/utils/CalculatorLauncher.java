@@ -36,14 +36,14 @@ public class CalculatorLauncher {
             result = new ResultObject("OK", processor.process(input));
         } catch (IOException | CalculatorApplicationException e) {
             log.debug("Error while calculation:\n" + e.getMessage());
-            result = new ResultObject("ERROR", "Error while calculation:\n" + e.getMessage());
+            result = new ResultObject("ERROR", "Wrong input string: " + e.getMessage());
         }
         if (result.getStatus().equals("OK")) {
             log.info("----- Calculation success.");
             log.info("----- Result --> " + result.getResult() + "\n");
         } else {
             log.info("----- Calculation failed.");
-            log.info("----- Error message:\n" + result.getErrorMessage());
+            log.warn("----- Error message: " + result.getErrorMessage()+"\n");
         }
     }
 }

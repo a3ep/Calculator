@@ -16,9 +16,13 @@ public class NumberBuilder {
     public int buildNumber(String stringNumber) {
         log.info("---------- Builds number...");
         if (stringNumber.length() != 0) {
-            return Integer.parseInt(stringNumber);
+            try {
+                return Integer.parseInt(stringNumber);
+            }catch (NumberFormatException e){
+                throw new CalculatorApplicationException(e.getMessage());
+            }
         }
-        throw new CalculatorApplicationException("Error while building number.");
+        throw new CalculatorApplicationException("Error while building number -->"+stringNumber);
     }
 
     /**
