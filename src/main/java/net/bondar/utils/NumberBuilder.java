@@ -1,12 +1,13 @@
 package net.bondar.utils;
 
 import net.bondar.exceptions.CalculatorApplicationException;
+import net.bondar.interfaces.INumberBuilder;
 import org.apache.log4j.Logger;
 
 /**
  *
  */
-public class NumberBuilder {
+public class NumberBuilder implements INumberBuilder {
     private final static Logger log = Logger.getLogger(NumberBuilder.class);
 
     /**

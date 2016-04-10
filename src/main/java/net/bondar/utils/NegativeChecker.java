@@ -1,11 +1,12 @@
 package net.bondar.utils;
 
+import net.bondar.interfaces.INegativeChecker;
 import org.apache.log4j.Logger;
 
 /**
  *
  */
-public class NegativeChecker {
+public class NegativeChecker implements INegativeChecker {
     private final static Logger log = Logger.getLogger(NegativeChecker.class);
 
     /**

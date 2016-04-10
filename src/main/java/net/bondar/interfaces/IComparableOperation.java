@@ -3,7 +3,7 @@ package net.bondar.interfaces;
 /**
  *
  */
-public interface ComparableOperation {
+public interface IComparableOperation {
 
     /**
      * @return

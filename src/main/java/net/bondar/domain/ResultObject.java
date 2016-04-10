@@ -1,9 +1,11 @@
 package net.bondar.domain;
 
+import net.bondar.interfaces.IResultObject;
+
 /**
  *
  */
-public class ResultObject {
+public class ResultObject implements IResultObject{
 
     /**
      *

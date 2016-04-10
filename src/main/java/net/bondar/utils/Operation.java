@@ -1,7 +1,7 @@
 package net.bondar.utils;
 
 
-import net.bondar.interfaces.ComparableOperation;
+import net.bondar.interfaces.IComparableOperation;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  *
  */
-public enum Operation implements ComparableOperation {
+public enum Operation implements IComparableOperation {
     /**
      *
      */

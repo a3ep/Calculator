@@ -1,13 +1,13 @@
 package net.bondar.utils;
 
-import net.bondar.interfaces.ComparableOperation;
+import net.bondar.interfaces.IComparableOperation;
 
 import java.util.Comparator;
 
 /**
  *
  */
-public class OperationPriorityComparator<T extends ComparableOperation> implements Comparator<T> {
+public class OperationPriorityComparator<T extends IComparableOperation> implements Comparator<T> {
 
     /**
      * @param o1
