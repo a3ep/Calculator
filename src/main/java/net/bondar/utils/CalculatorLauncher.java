@@ -1,5 +1,6 @@
 package net.bondar.utils;
 
+import net.bondar.domain.NullObject;
 import net.bondar.domain.ResultObject;
 import net.bondar.exceptions.CalculatorApplicationException;
 import net.bondar.interfaces.ICalculableProcessor;
@@ -35,7 +36,7 @@ public class CalculatorLauncher implements ILauncher {
      * @return
      */
     public void run() {
-        IResultObject result = new ResultObject("", "");
+        IResultObject result = new NullObject();
         String input;
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -49,13 +50,13 @@ public class CalculatorLauncher implements ILauncher {
                     historyHolder.showUniqueHistory();
                     break;
                 default:
-                    result = new ResultObject("OK", processor.process(input));
+                    result = new ResultObject(processor.process(input));
                     historyHolder.addToHistory(input+" = "+result.getResult());
                     break;
             }
         } catch (IOException | CalculatorApplicationException e) {
             log.debug("Error while calculation:\n" + e.getMessage());
-            result = new ResultObject("ERROR", "Wrong input string: " + e.getMessage());
+            result = new ResultObject("Wrong input string: " + e.getMessage());
         }
         viewer.viewResult(result);
         next();
@@ -79,7 +80,7 @@ public class CalculatorLauncher implements ILauncher {
                         System.exit(0);
                 }
             } catch (IOException e) {
-                ResultObject result = new ResultObject("ERROR", "Wrong input string: "+e.getMessage());
+                ResultObject result = new ResultObject("Wrong input string: "+e.getMessage());
                 viewer.viewResult(result);
             }
         }

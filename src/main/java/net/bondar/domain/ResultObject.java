@@ -3,61 +3,72 @@ package net.bondar.domain;
 import net.bondar.interfaces.IResultObject;
 
 /**
- *
+ * Contains the final result of the expression.
  */
 public class ResultObject implements IResultObject{
 
     /**
-     *
+     * Result status, should be "OK" or "ERROR".
      */
     private final String status;
 
     /**
-     *
+     * Result error message.
      */
     private final String errorMessage;
 
     /**
-     *
+     * Result value, contains a value of calculation.
      */
     private final int result;
 
     /**
-     * @param status
-     * @param errorMessage
+     * Creates {@link ResultObject} with <code>status</code> and <code>errorMessage</code>.
+     *
+     * @param errorMessage error message, if during the calculation error occurred contains an error message
      */
-    public ResultObject(String status, String errorMessage) {
-        this.status = status;
+    public ResultObject(String errorMessage) {
+        this.status = "ERROR";
         this.errorMessage = errorMessage;
         this.result = -1;
     }
 
     /**
-     * @param status
-     * @param result
+     * Creates {@link ResultObject} with <code>status</code> and <code>result</code>.
+     *
+     * @param result calculation value
      */
-    public ResultObject(String status, int result) {
-        this.status = status;
+    public ResultObject(int result) {
+        this.status = "OK";
         this.errorMessage = "";
         this.result = result;
     }
 
     /**
-     * @return
+     * Gets a result status.
+     *
+     * @return status of calculation
+     * @see {@link IResultObject}
      */
     public String getStatus() {
         return status;
     }
 
     /**
-     * @return
+     * Gets a result error message.
+     *
+     * @return error message
+     * @see {@link IResultObject}
      */
     public String getErrorMessage() {
         return errorMessage;
     }
 
     /**
-     * @return
+     * Gets a result value of calculation.
+     *
+     * @return value of calculation
+     * * @see {@link IResultObject}
      */
     public int getResult() {
         return result;
