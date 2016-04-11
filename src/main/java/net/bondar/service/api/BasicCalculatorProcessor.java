@@ -1,9 +1,9 @@
 package net.bondar.service.api;
 
 import net.bondar.exceptions.CalculatorApplicationException;
-import net.bondar.interfaces.INumberBuilder;
 import net.bondar.interfaces.ICalculableProcessor;
 import net.bondar.interfaces.INegativeChecker;
+import net.bondar.interfaces.INumberBuilder;
 import net.bondar.interfaces.IOperationHolder;
 import net.bondar.utils.Operation;
 import org.apache.log4j.Logger;
@@ -36,7 +36,7 @@ public class BasicCalculatorProcessor implements ICalculableProcessor {
     /**
      * Creates {@link BasicCalculatorProcessor} instance.
      *
-     * @param holder operation holder
+     * @param holder  operation holder
      * @param checker negative expression checker
      * @param builder number builder
      */
@@ -70,9 +70,9 @@ public class BasicCalculatorProcessor implements ICalculableProcessor {
                 return getExpressionValue(expression, op);
             }
         }
-        try{
+        try {
             return Integer.parseInt(expression);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new CalculatorApplicationException(e.getMessage());
         }
 
@@ -82,10 +82,10 @@ public class BasicCalculatorProcessor implements ICalculableProcessor {
      * Defines the left and right sides of the expression and produces the required mathematical operation.
      *
      * @param expression string with expression to be processed
-     * @param op current mathematical operation
+     * @param op         current mathematical operation
      * @return returns partially processed expression string back into the <code>process</code> method
      */
-    public int getExpressionValue(String expression, Operation op) {
+    private int getExpressionValue(String expression, Operation op) {
         log.info("Calculates an intermediate value...");
         int opIndex;
         int leftNumber;
