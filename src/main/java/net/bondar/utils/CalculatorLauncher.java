@@ -14,26 +14,49 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- *
+ * Provides communication with user.
  */
 public class CalculatorLauncher implements ILauncher {
-    private final static Logger log = Logger.getLogger(CalculatorLauncher.class);
-    private ICalculableProcessor processor;
-    private IResultViewer viewer;
-    private HistoryHolder historyHolder;
 
     /**
-     * @param processor
-     * @param viewer
+     * Logger.
      */
-    public CalculatorLauncher(ICalculableProcessor processor, IResultViewer viewer, HistoryHolder historyHolder) {
+    private final static Logger log = Logger.getLogger(CalculatorLauncher.class);
+
+    /**
+     * Calculator processor.
+     */
+    private ICalculableProcessor processor;
+
+    /**
+     * Result viewer.
+     */
+    private IResultViewer viewer;
+
+    /**
+     * History holder.
+     */
+    private HistoryHolder holder;
+
+    /**
+     * Creates {@link CalculatorLauncher} instance.
+     *
+     * @param processor calculator processor
+     * @param viewer    result viewer
+     * @param holder    history holder
+     */
+    public CalculatorLauncher(ICalculableProcessor processor, IResultViewer viewer, HistoryHolder holder) {
         this.processor = processor;
         this.viewer = viewer;
-        this.historyHolder = historyHolder;
+        this.holder = holder;
     }
 
     /**
-     * @return
+     * Runs communication with user.
+     * <br>
+     * Depending on the user input line shows history or unique history, starts processing of expression.
+     * If processing was successful - transmits to {@link IResultViewer} completed {@link IResultObject} with the result
+     * of calculation, if else - transmits completed {@link IResultObject} with error message.
      */
     public void run() {
         IResultObject result = new NullObject();
@@ -42,16 +65,16 @@ public class CalculatorLauncher implements ILauncher {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             log.info("----- Input your expression:");
             input = br.readLine();
-            switch (input){
+            switch (input) {
                 case "history":
-                    historyHolder.showHistory();
+                    holder.showHistory();
                     break;
                 case "history unique":
-                    historyHolder.showUniqueHistory();
+                    holder.showUniqueHistory();
                     break;
                 default:
                     result = new ResultObject(processor.process(input));
-                    historyHolder.addToHistory(input+" = "+result.getResult());
+                    holder.addToHistory(input + " = " + result.getResult());
                     break;
             }
         } catch (IOException | CalculatorApplicationException e) {
@@ -63,9 +86,11 @@ public class CalculatorLauncher implements ILauncher {
     }
 
     /**
-     *
+     * Checks whether the wish of user to continue the calculation.
+     * If "yes" - initiates run(), if "no" - closes {@link BufferedReader} and application.
+     * If exception was occurred - transmits to {@link IResultViewer} completed {@link IResultObject} with error message.
      */
-    public void next() {
+    private void next() {
         while (true) {
             log.info("- Perform another calculation? (yes/no)");
             try {
@@ -80,7 +105,7 @@ public class CalculatorLauncher implements ILauncher {
                         System.exit(0);
                 }
             } catch (IOException e) {
-                ResultObject result = new ResultObject("Wrong input string: "+e.getMessage());
+                ResultObject result = new ResultObject("Wrong input string: " + e.getMessage());
                 viewer.viewResult(result);
             }
         }

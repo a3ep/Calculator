@@ -18,6 +18,7 @@ public class ResultViewer implements IResultViewer {
      * Displays the result of the calculation to the console.
      *
      * @param object object with the result of calculation
+     * @see {@link IResultViewer}
      */
     public void viewResult(IResultObject object) {
         if (object.getStatus().equals("OK")) {
