@@ -15,7 +15,7 @@ public class Main {
             IOperationHolder operationHolder = new OperationHolder();
             INegativeChecker negativeChecker = new NegativeChecker();
             INumberBuilder numberBuilder = new NumberBuilder();
-            ICalculableProcessor processor = new BasicCalculatorProcessor(operationHolder, negativeChecker, numberBuilder);
+            ICalculableProcessor processor = new BracketsCalculatorProcessor(new BasicCalculatorProcessor(operationHolder, negativeChecker, numberBuilder));
             IResultViewer viewer = new ResultViewer();
             IHistoryHolder historyHolder = new HistoryHolder();
 
