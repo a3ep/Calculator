@@ -1,13 +1,14 @@
 package net.bondar.utils;
 
 import net.bondar.interfaces.ICalculableProcessor;
+import net.bondar.interfaces.ICalculableProcessorDecorator;
 import net.bondar.service.api.BasicCalculatorProcessor;
 import org.apache.log4j.Logger;
 
 /**
  * Provides calculation of expression with brackets.
  */
-public class BracketsCalculatorProcessor implements ICalculableProcessor{
+public class BracketsCalculatorProcessor implements ICalculableProcessor, ICalculableProcessorDecorator {
     /**
      * Logger.
      */
@@ -39,10 +40,10 @@ public class BracketsCalculatorProcessor implements ICalculableProcessor{
         log.info("Checks brackets...");
         int lastIndex = expression.indexOf(")");
         int firstIndex = expression.indexOf("(");
-        if(firstIndex!=-1 && lastIndex !=-1){
+        if (firstIndex != -1 && lastIndex != -1) {
             log.info("Processes expression in the brackets...");
-            int digit = processor.process(expression.substring(firstIndex+1, lastIndex));
-            return process(expression.substring(0, firstIndex)+digit+expression.substring(lastIndex+1));
+            int digit = processor.process(expression.substring(firstIndex + 1, lastIndex));
+            return process(expression.substring(0, firstIndex) + digit + expression.substring(lastIndex + 1));
         }
         return processor.process(expression);
     }
