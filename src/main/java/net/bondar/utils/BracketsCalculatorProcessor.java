@@ -42,9 +42,44 @@ public class BracketsCalculatorProcessor implements ICalculableProcessor, ICalcu
         int firstIndex = expression.indexOf("(");
         if (firstIndex != -1 && lastIndex != -1) {
             log.info("Processes expression in the brackets...");
-            int digit = processor.process(expression.substring(firstIndex + 1, lastIndex));
-            return process(expression.substring(0, firstIndex) + digit + expression.substring(lastIndex + 1));
+            StringBuilder leftPart = new StringBuilder(expression.substring(0, firstIndex));
+            int number = processor.process(expression.substring(firstIndex + 1, lastIndex));
+            if (number < 0 && leftPart.length() > 0) {
+                number *= -1;
+                leftPart = convertNegative(leftPart);
+                return process(leftPart.toString() + number + expression.substring(lastIndex + 1));
+            }
+            return process(leftPart.toString() + number + expression.substring(lastIndex + 1));
         }
         return processor.process(expression);
+    }
+
+    /**
+     * Converts the negative expression into a positive.
+     *
+     * @param leftPart left part of specified expression string
+     * @return converted left part of specified expression string
+     */
+    private StringBuilder convertNegative(StringBuilder leftPart) {
+        leftPart = leftPart.reverse();
+        char[] arr = leftPart.toString().toCharArray();
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == '+') {
+                arr[i] = '-';
+                leftPart = new StringBuilder(new String(arr));
+                break;
+            } else if (arr[i] == '-') {
+                arr[i] = '+';
+                leftPart = new StringBuilder(new String(arr));
+                break;
+            } else if (arr[i] == arr[arr.length - 1]) {
+                char[] newArr = new char[arr.length + 1];
+                newArr[newArr.length - 1] = '-';
+                System.arraycopy(arr, 0, newArr, 0, arr.length);
+                leftPart = new StringBuilder(new String(newArr));
+                break;
+            }
+        }
+        return leftPart.reverse();
     }
 }

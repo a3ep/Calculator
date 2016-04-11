@@ -5,4 +5,11 @@ package net.bondar.interfaces;
  */
 public interface ICalculableProcessorDecorator {
 
+    /**
+     * Processes an expression.
+     *
+     * @param expression string with expression to be processed
+     * @return value of calculation
+     */
+    int process(String expression);
 }

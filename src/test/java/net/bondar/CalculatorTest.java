@@ -71,7 +71,7 @@ public class CalculatorTest {
         assertEquals(8, processor.process("-2*3+14"));
         assertEquals(11, processor.process("13-6+(2+6)/2"));
         assertEquals(4, processor.process("2+3*2-8/2"));
-        assertEquals(20, processor.process("12+(6/3)+3*2"));
+        assertEquals(16, processor.process("12+(-6/3)+3*2"));
     }
 
 }
