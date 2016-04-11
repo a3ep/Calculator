@@ -1,13 +1,15 @@
 package net.bondar.interfaces;
 
 /**
- *
+ * Interface for class that provides expression processing.
  */
 public interface ICalculableProcessor {
 
     /**
-     * @param expression
-     * @return
+     * Processes an expression.
+     *
+     * @param expression string with expression to be processed
+     * @return value of calculation
      */
     int process(String expression);
 }

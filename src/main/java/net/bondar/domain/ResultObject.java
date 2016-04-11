@@ -5,7 +5,7 @@ import net.bondar.interfaces.IResultObject;
 /**
  * Contains the final result of the expression.
  */
-public class ResultObject implements IResultObject{
+public class ResultObject implements IResultObject {
 
     /**
      * Result status, should be "OK" or "ERROR".

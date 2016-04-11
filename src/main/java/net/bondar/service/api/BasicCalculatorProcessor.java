@@ -9,40 +9,62 @@ import net.bondar.utils.Operation;
 import org.apache.log4j.Logger;
 
 /**
- *
+ * Provides calculation of expression.
  */
 public class BasicCalculatorProcessor implements ICalculableProcessor {
-    private final static Logger log = Logger.getLogger(BasicCalculatorProcessor.class);
-    private IOperationHolder operationHolder;
-    private INegativeChecker negativeChecker;
-    private INumberBuilder numberBuilder;
 
     /**
-     * @param operationHolder
-     * @param negativeChecker
-     * @param numberBuilder
+     * Logger.
      */
-    public BasicCalculatorProcessor(IOperationHolder operationHolder,
-                                    INegativeChecker negativeChecker,
-                                    INumberBuilder numberBuilder) {
-        this.operationHolder = operationHolder;
-        this.negativeChecker = negativeChecker;
-        this.numberBuilder = numberBuilder;
+    private final static Logger log = Logger.getLogger(BasicCalculatorProcessor.class);
+
+    /**
+     * Operation holder.
+     */
+    private IOperationHolder holder;
+
+    /**
+     * Negative expression checker.
+     */
+    private INegativeChecker checker;
+
+    /**
+     * Number builder.
+     */
+    private INumberBuilder builder;
+
+    /**
+     * Creates {@link BasicCalculatorProcessor} instance.
+     *
+     * @param holder operation holder
+     * @param checker negative expression checker
+     * @param builder number builder
+     */
+    public BasicCalculatorProcessor(IOperationHolder holder,
+                                    INegativeChecker checker,
+                                    INumberBuilder builder) {
+        this.holder = holder;
+        this.checker = checker;
+        this.builder = builder;
     }
 
     /**
-     * @param expression
-     * @return
+     * Calculates expression value.
+     *
+     * @param expression string with expression to be processed
+     * @return value of calculation
+     * @throws CalculatorApplicationException when the result value has incorrect format
+     * @see {@link ICalculableProcessor}
      */
     @Override
     public int process(String expression) {
         log.info("Processes: " + expression);
         int opIndex;
-        if (negativeChecker.isNegative(expression)) {
+        if (checker.isNegative(expression)) {
             log.info("Expression is negative.");
-            return process(negativeChecker.processNegative(expression)) * -1;
+            return process(checker.processNegative(expression)) * -1;
         }
-        for (Operation op : operationHolder.getOperationsByPriority()) {
+        for (Operation op : holder.getOperationsByPriority()) {
             opIndex = expression.indexOf(op.getOperation());
             if (opIndex != -1) {
                 return getExpressionValue(expression, op);
@@ -57,9 +79,11 @@ public class BasicCalculatorProcessor implements ICalculableProcessor {
     }
 
     /**
-     * @param expression
-     * @param op
-     * @return
+     * Defines the left and right sides of the expression and produces the required mathematical operation.
+     *
+     * @param expression string with expression to be processed
+     * @param op current mathematical operation
+     * @return returns partially processed expression string back into the <code>process</code> method
      */
     public int getExpressionValue(String expression, Operation op) {
         log.info("Calculates an intermediate value...");
@@ -68,15 +92,15 @@ public class BasicCalculatorProcessor implements ICalculableProcessor {
         int rightNumber;
         String leftSubstring;
         String rightSubstring;
-        op = operationHolder.checkOperator(op, expression);
+        op = holder.checkOperator(op, expression);
         opIndex = expression.indexOf(op.getOperation());
         log.info("Searches right number...");
-        rightSubstring = numberBuilder.buildStringNumber(expression.substring(opIndex + 1), expression);
-        rightNumber = numberBuilder.buildNumber(rightSubstring);
+        rightSubstring = builder.buildStringNumber(expression.substring(opIndex + 1), expression);
+        rightNumber = builder.buildNumber(rightSubstring);
         log.info("Right number -> " + rightNumber);
         log.info("Searches left number...");
-        leftSubstring = numberBuilder.buildStringNumber(expression.substring(0, opIndex), expression);
-        leftNumber = numberBuilder.buildNumber(leftSubstring);
+        leftSubstring = builder.buildStringNumber(expression.substring(0, opIndex), expression);
+        leftNumber = builder.buildNumber(leftSubstring);
         log.info("Left number -> " + leftNumber);
         return process(expression.substring(0, opIndex - leftSubstring.length()) + op.calculate(leftNumber, rightNumber)
                 + expression.substring(opIndex + rightSubstring.length() + 1));

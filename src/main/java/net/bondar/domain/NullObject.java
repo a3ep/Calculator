@@ -3,9 +3,9 @@ package net.bondar.domain;
 import net.bondar.interfaces.IResultObject;
 
 /**
- * Contains an empty {@link ResultObject}.
+ * Contains an implementation of empty {@link ResultObject}.
  */
-public class NullObject implements IResultObject{
+public class NullObject implements IResultObject {
     /**
      * Result status.
      */
@@ -24,12 +24,14 @@ public class NullObject implements IResultObject{
     /**
      * Creates an empty {@link ResultObject}.
      */
-    public NullObject() {}
+    public NullObject() {
+    }
 
     /**
      * Gets {@link NullObject} status.
      *
      * @return null status
+     * @see {@link IResultObject}
      */
     @Override
     public String getStatus() {
@@ -40,6 +42,7 @@ public class NullObject implements IResultObject{
      * Gets {@link NullObject} error message.
      *
      * @return null message
+     * @see {@link IResultObject}
      */
     @Override
     public String getErrorMessage() {
@@ -50,6 +53,7 @@ public class NullObject implements IResultObject{
      * Gets {@link NullObject} value of calculation.
      *
      * @return null value
+     * @see {@link IResultObject}
      */
     @Override
     public int getResult() {

@@ -4,13 +4,20 @@ import net.bondar.interfaces.INegativeChecker;
 import org.apache.log4j.Logger;
 
 /**
- *
+ * Provides scanning and processing of negative expressions.
  */
 public class NegativeChecker implements INegativeChecker {
+
+    /**
+     * Logger.
+     */
     private final static Logger log = Logger.getLogger(NegativeChecker.class);
 
     /**
-     * @return
+     * Checks whether an expression is negative.
+     *
+     * @return if an expression is negative returns true, else - false
+     * @see {@link INegativeChecker}
      */
     public boolean isNegative(String str) {
         log.info("-------- Checks negatives...");
@@ -18,8 +25,11 @@ public class NegativeChecker implements INegativeChecker {
     }
 
     /**
-     * @param str
-     * @return
+     * Turns the negative expression into a positive.
+     *
+     * @param str string with expression to be turned
+     * @return string with positive expression
+     * @see {@link INegativeChecker}
      */
     public String processNegative(String str) {
         log.info("-------- Processes negative expression...");
