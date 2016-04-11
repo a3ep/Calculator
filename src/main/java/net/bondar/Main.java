@@ -6,7 +6,7 @@ import net.bondar.service.api.BasicCalculatorService;
 import net.bondar.utils.*;
 
 /**
- *
+ * Provides the beginning of the application.
  */
 public class Main {
 
@@ -17,12 +17,10 @@ public class Main {
             INumberBuilder numberBuilder = new NumberBuilder();
             ICalculableProcessor processor = new BasicCalculatorProcessor(operationHolder, negativeChecker, numberBuilder);
             IResultViewer viewer = new ResultViewer();
-            HistoryHolder historyHolder = new HistoryHolder();
-            ILauncher launcher = new CalculatorLauncher(processor, viewer, historyHolder);
+            IHistoryHolder historyHolder = new HistoryHolder();
 
-            ICalculableService service = new BasicCalculatorService(launcher);
-            service.doCalculate();
-
+            ICalculableService service = new BasicCalculatorService(processor, viewer, historyHolder);
+            service.run();
         } catch (Throwable t) {
             t.printStackTrace();
         }

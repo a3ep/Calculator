@@ -21,14 +21,15 @@ public class ResultViewer implements IResultViewer {
      * @see {@link IResultViewer}
      */
     public void viewResult(IResultObject object) {
-        if (object.getStatus().equals("OK")) {
+        if (object.getStatus().equals("NULL")) {
+            log.info("----------- End of history.\n");
+        } else if (object.getStatus().equals("OK")) {
             log.info("----------- Calculation success.");
             log.info("----------- Result --> " + object.getResult() + "\n");
         } else if (object.getStatus().equals("ERROR")) {
             log.info("----------- Calculation failed.");
             log.warn("----------- Error message: " + object.getErrorMessage() + "\n");
-        } else {
-            log.info("----------- End of history.\n");
+
         }
     }
 }

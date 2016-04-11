@@ -9,22 +9,25 @@ public class NullObject implements IResultObject {
     /**
      * Result status.
      */
-    private final String status = "";
+    private final String status;
 
     /**
      * Result error message.
      */
-    private final String errorMessage = "";
+    private final String errorMessage;
 
     /**
      * Result value.
      */
-    private final int result = -1;
+    private final int result;
 
     /**
      * Creates an empty {@link ResultObject}.
      */
     public NullObject() {
+        this.status = "NULL";
+        this.errorMessage = "";
+        this.result = -1;
     }
 
     /**
@@ -35,7 +38,7 @@ public class NullObject implements IResultObject {
      */
     @Override
     public String getStatus() {
-        return null;
+        return "NULL";
     }
 
     /**
@@ -46,7 +49,7 @@ public class NullObject implements IResultObject {
      */
     @Override
     public String getErrorMessage() {
-        return null;
+        return "";
     }
 
     /**
@@ -57,7 +60,7 @@ public class NullObject implements IResultObject {
      */
     @Override
     public int getResult() {
-        return 0;
+        return -1;
     }
 
     @Override
