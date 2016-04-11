@@ -1,12 +1,14 @@
 package net.bondar.interfaces;
 
 /**
- *
+ * Interface for compare two mathematical operations.
  */
 public interface IComparableOperation {
 
     /**
-     * @return
+     * Gets compared operation priority.
+     *
+     * @return compared operation priority
      */
     int getPriority();
 }
