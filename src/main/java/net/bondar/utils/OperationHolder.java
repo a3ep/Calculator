@@ -62,8 +62,8 @@ public class OperationHolder implements IOperationHolder {
      * @return the operation with the lowest index in expression string
      */
     private Operation swap(String expression, Operation current, Operation op1, Operation op2) {
-        int firstIndex = expression.indexOf(op1.getOperation());
-        int secondIndex = expression.indexOf(op2.getOperation());
+        int firstIndex = expression.indexOf(op1.getOperator());
+        int secondIndex = expression.indexOf(op2.getOperator());
         if (firstIndex >= 0 && secondIndex >= 0) {
             return (firstIndex > secondIndex) ? op2 : op1;
         }

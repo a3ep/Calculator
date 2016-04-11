@@ -2,19 +2,24 @@ package net.bondar.utils;
 
 
 import net.bondar.interfaces.IComparableOperation;
+import net.bondar.interfaces.IOperation;
 import org.apache.log4j.Logger;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  */
-public enum Operation implements IComparableOperation {
+public enum Operation implements IOperation, IComparableOperation {
     /**
-     *
+     * Addition operation.
      */
     PLUS("+", 2) {
+        /**
+         * Calculates the result of adding two numbers.
+         *
+         * @param x first number
+         * @param y second number
+         * @return the result of addition
+         */
         public int calculate(int x, int y) {
             log.info("-------------- Addition: " + x + " + " + y);
             return x + y;
@@ -22,19 +27,33 @@ public enum Operation implements IComparableOperation {
     },
 
     /**
-     *
+     * Subtraction operation.
      */
     MINUS("-", 2) {
+        /**
+         * Calculates the result of subtracting two numbers.
+         *
+         * @param x first number
+         * @param y second number
+         * @return the result of subtraction
+         */
         public int calculate(int x, int y) {
-            log.info("-------------- Substraction: " + x + " - " + y);
+            log.info("-------------- Subtraction: " + x + " - " + y);
             return x - y;
         }
     },
 
     /**
-     *
+     * Multiplication operation.
      */
     MUL("*", 1) {
+        /**
+         * Calculates the result of the product of two numbers.
+         *
+         * @param x first number
+         * @param y second number
+         * @return the result of multiplication
+         */
         public int calculate(int x, int y) {
             log.info("-------------- Multiplication: " + x + " * " + y);
             return x * y;
@@ -42,42 +61,54 @@ public enum Operation implements IComparableOperation {
     },
 
     /**
-     *
+     * Division operation.
      */
     DIV("/", 1) {
+        /**
+         * Calculates the result of the division of two numbers.
+         *
+         * @param x first number
+         * @param y second number
+         * @return the result of division
+         */
         public int calculate(int x, int y) {
             log.info("-------------- Division: " + x + " / " + y);
             return x / y;
         }
     };
+
+    /**
+     * Logger.
+     */
     private final static Logger log = Logger.getLogger(Operation.class);
 
     /**
-     * @param operation
-     * @param priority
+     * Creates {@link Operation} instance.
+     *
+     * @param operator the mathematical operator
+     * @param priority priority of the mathematical operation
      */
-    Operation(String operation, int priority) {
-        this.operation = operation;
+    Operation(String operator, int priority) {
+        this.operator = operator;
         this.priority = priority;
     }
 
     /**
-     * @return
+     * Gets a mathematical operator.
+     *
+     * @return value of the mathematical operator
+     * @see {@link IOperation}
      */
-    public String getOperation() {
-        return operation;
+    public String getOperator() {
+        return operator;
     }
 
-    public static Operation getOperation(String operator) {
-        Operation result = null;
-        for (Operation operation : Operation.values()) {
-            if (operator.equals(operation.operation)) result = operation;
-        }
-        return result;
-    }
 
     /**
-     * @return
+     * Gets a mathematical operation priority.
+     *
+     * @return a mathematical operation priority
+     * @see {@link IOperation}
      */
     public int getPriority() {
         return priority;
@@ -85,30 +116,12 @@ public enum Operation implements IComparableOperation {
 
 
     /**
-     *
+     * The mathematical operator.
      */
-    private String operation;
+    private String operator;
 
     /**
-     *
+     * Priority of the mathematical operator.
      */
     private int priority;
-
-    /**
-     *
-     */
-    private List<Operation> highPriorityOperations = new ArrayList<>();
-
-    /**
-     *
-     */
-    private List<Operation> lowPriorityOperations = new ArrayList<>();
-
-    /**
-     * @param x
-     * @param y
-     * @return
-     */
-    public abstract int calculate(int x, int y);
-
 }

@@ -21,7 +21,7 @@ public class NegativeChecker implements INegativeChecker {
      */
     public boolean isNegative(String str) {
         log.info("-------- Checks negatives...");
-        return str.indexOf(Operation.MINUS.getOperation()) == 0;
+        return str.indexOf(Operation.MINUS.getOperator()) == 0;
     }
 
     /**

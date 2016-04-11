@@ -65,7 +65,7 @@ public class BasicCalculatorProcessor implements ICalculableProcessor {
             return process(checker.processNegative(expression)) * -1;
         }
         for (Operation op : holder.getOperationsByPriority()) {
-            opIndex = expression.indexOf(op.getOperation());
+            opIndex = expression.indexOf(op.getOperator());
             if (opIndex != -1) {
                 return getExpressionValue(expression, op);
             }
@@ -93,7 +93,7 @@ public class BasicCalculatorProcessor implements ICalculableProcessor {
         String leftSubstring;
         String rightSubstring;
         op = holder.checkOperator(op, expression);
-        opIndex = expression.indexOf(op.getOperation());
+        opIndex = expression.indexOf(op.getOperator());
         log.info("Searches right number...");
         rightSubstring = builder.buildStringNumber(expression.substring(opIndex + 1), expression);
         rightNumber = builder.buildNumber(rightSubstring);
