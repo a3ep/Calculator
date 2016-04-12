@@ -59,7 +59,7 @@ public class BasicCalculatorService implements ICalculableService {
         String input;
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            log.info("----- Input your expression:");
+            log.info("----- Input your expression (example: 2 + 3 * 4):");
             input = br.readLine();
             switch (input) {
                 case "history":
@@ -69,7 +69,7 @@ public class BasicCalculatorService implements ICalculableService {
                     holder.showUniqueHistory();
                     break;
                 default:
-                    result = new ResultObject(processor.process(input));
+                    result = new ResultObject(processor.process(input.replaceAll(" ", "")));
                     holder.addToHistory(input + " = " + result.getResult());
                     break;
             }
