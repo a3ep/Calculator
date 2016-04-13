@@ -34,7 +34,7 @@ public class BasicCalculatorProcessor implements ICalculableProcessor {
     private INumberBuilder builder;
 
     /**
-     * Creates {@link BasicCalculatorProcessor} instance.
+     * Creates <code>BasicCalculatorProcessor</code> instance.
      *
      * @param holder  operation holder
      * @param checker negative expression checker

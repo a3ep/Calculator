@@ -35,7 +35,7 @@ public class BasicCalculatorService implements ICalculableService {
     private IHistoryHolder holder;
 
     /**
-     * Creates {@link BasicCalculatorService} instance.
+     * Creates <code>BasicCalculatorService</code> instance.
      *
      * @param processor calculator processor
      * @param viewer    result viewer
@@ -51,8 +51,8 @@ public class BasicCalculatorService implements ICalculableService {
      * Runs communication with user.
      * <br>
      * Depending on the user input line shows history or unique history, starts processing of expression.
-     * If processing was successful - transmits to {@link IResultViewer} completed {@link IResultObject} with the result
-     * of calculation, if else - transmits completed {@link IResultObject} with error message.
+     * If processing was successful - transmits to <code>IResultViewer</code> completed <code>IResultObject</code> with the result
+     * of calculation, if else - transmits completed <code>IResultObject</code> with error message.
      */
     public void run() {
         IResultObject result = new NullObject();
@@ -83,8 +83,8 @@ public class BasicCalculatorService implements ICalculableService {
 
     /**
      * Checks whether the wish of user to continue the calculation.
-     * If "yes" - initiates run(), if "no" - closes {@link BufferedReader} and application.
-     * If exception was occurred - transmits to {@link IResultViewer} completed {@link IResultObject} with error message.
+     * If "yes" - initiates run(), if "no" - closes <code>BufferedReader</code> and application.
+     * If exception was occurred - transmits to <code>IResultViewer</code> completed <code>IResultObject</code> with error message.
      */
     private void next() {
         while (true) {

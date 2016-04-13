@@ -6,7 +6,7 @@ package net.bondar.exceptions;
 public class CalculatorApplicationException extends RuntimeException {
 
     /**
-     * Creates {@link CalculatorApplicationException} instance.
+     * Creates <code>CalculatorApplicationException</code> instance.
      *
      * @param message error message
      */

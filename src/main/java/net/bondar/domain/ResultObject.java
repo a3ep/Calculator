@@ -23,7 +23,7 @@ public class ResultObject implements IResultObject {
     private final int result;
 
     /**
-     * Creates {@link ResultObject} with <code>status</code> and <code>errorMessage</code>.
+     * Creates <code>ResultObject</code> with <code>status</code> and <code>errorMessage</code>.
      *
      * @param errorMessage error message, if during the calculation error occurred contains an error message
      */

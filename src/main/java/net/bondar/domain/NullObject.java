@@ -3,7 +3,7 @@ package net.bondar.domain;
 import net.bondar.interfaces.IResultObject;
 
 /**
- * Contains an implementation of empty {@link ResultObject}.
+ * Contains an implementation of empty <code>ResultObject</code>.
  */
 public class NullObject implements IResultObject {
     /**
@@ -22,7 +22,7 @@ public class NullObject implements IResultObject {
     private final int result;
 
     /**
-     * Creates an empty {@link ResultObject}.
+     * Creates an empty <code>ResultObject</code>.
      */
     public NullObject() {
         this.status = "NULL";
@@ -31,7 +31,7 @@ public class NullObject implements IResultObject {
     }
 
     /**
-     * Gets {@link NullObject} status.
+     * Gets <code>NullObject</code> status.
      *
      * @return null status
      * @see {@link IResultObject}
@@ -42,7 +42,7 @@ public class NullObject implements IResultObject {
     }
 
     /**
-     * Gets {@link NullObject} error message.
+     * Gets <code>NullObject</code> error message.
      *
      * @return null message
      * @see {@link IResultObject}
@@ -53,7 +53,7 @@ public class NullObject implements IResultObject {
     }
 
     /**
-     * Gets {@link NullObject} value of calculation.
+     * Gets <code>NullObject</code> value of calculation.
      *
      * @return null value
      * @see {@link IResultObject}

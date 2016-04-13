@@ -20,7 +20,7 @@ public class BracketsCalculatorProcessor implements ICalculableProcessor, ICalcu
     private ICalculableProcessor processor;
 
     /**
-     * Creates {@link BracketsCalculatorProcessor} instance.
+     * Creates <code>BracketsCalculatorProcessor</code> instance.
      *
      * @param processor calculator processor
      */

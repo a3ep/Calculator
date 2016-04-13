@@ -83,7 +83,7 @@ public enum Operation implements IOperation, IComparableOperation {
     private final static Logger log = Logger.getLogger(Operation.class);
 
     /**
-     * Creates {@link Operation} instance.
+     * Creates <code>Operation</code> instance.
      *
      * @param operator the mathematical operator
      * @param priority priority of the mathematical operation
