@@ -9,6 +9,8 @@ import org.apache.log4j.Logger;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Provides communication with user.
@@ -63,10 +65,20 @@ public class BasicCalculatorService implements ICalculableService {
             input = br.readLine();
             switch (input) {
                 case "history":
-                    holder.showHistory();
+                    List<String> history = holder.getHistory();
+                    log.info("---------- Expressions history:");
+                    for (String str : history) {
+                        log.info("------------  " + str);
+                    }
+                    log.info("---------- End of history.\n");
                     break;
                 case "history unique":
-                    holder.showUniqueHistory();
+                   Set<String> uniqueHistory =  holder.getUniqueHistory();
+                    log.info("---------- Unique expressions history:");
+                    for (String str : uniqueHistory) {
+                        log.info("------------  " + str);
+                    }
+                    log.info("---------- End of history.\n");
                     break;
                 default:
                     result = new ResultObject(processor.process(input.replaceAll(" ", "")));

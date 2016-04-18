@@ -34,27 +34,22 @@ public class HistoryHolder implements IHistoryHolder {
     }
 
     /**
-     * Shows the history of calculations.
+     * Gets the history of calculations.
      *
+     * @return list with history of calculations
      * @see {@link IHistoryHolder}
      */
-    public void showHistory() {
-        log.info("---------- Expressions history:");
-        for (String str : history) {
-            log.info("------------  " + str);
-        }
+    public List<String> getHistory() {
+        return history;
     }
 
     /**
-     * Shows the unique history of calculations.
+     * Gets the unique history of calculations.
      *
+     * @return set with unique history of calculations
      * @see {@link IHistoryHolder}
      */
-    public void showUniqueHistory() {
-        Set<String> historySet = new LinkedHashSet<>(history);
-        log.info("---------- Unique expressions history:");
-        for (String str : historySet) {
-            log.info("------------  " + str);
-        }
+    public Set<String> getUniqueHistory() {
+        return new LinkedHashSet<>(history);
     }
 }

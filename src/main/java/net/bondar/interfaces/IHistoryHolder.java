@@ -1,5 +1,8 @@
 package net.bondar.interfaces;
 
+import java.util.List;
+import java.util.Set;
+
 /**
  * Interface for storing the history of calculations.
  */
@@ -13,12 +16,16 @@ public interface IHistoryHolder {
     void addToHistory(String expression);
 
     /**
-     * Shows the history of calculations.
+     * Gets the history of calculations.
+     *
+     * @return list with history of calculations
      */
-    void showHistory();
+    List<String> getHistory();
 
     /**
-     * Shows the unique history of calculations.
+     * Gets the unique history of calculations.
+     *
+     * @return set with unique history of calculations
      */
-    void showUniqueHistory();
+    Set<String> getUniqueHistory();
 }

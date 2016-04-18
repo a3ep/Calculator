@@ -22,7 +22,7 @@ public class ResultViewer implements IResultViewer {
      */
     public void viewResult(IResultObject object) {
         if (object.getStatus().equals("NULL")) {
-            log.info("----------- End of history.\n");
+
         } else if (object.getStatus().equals("OK")) {
             log.info("----------- Calculation success.");
             log.info("----------- Result --> " + object.getResult() + "\n");
