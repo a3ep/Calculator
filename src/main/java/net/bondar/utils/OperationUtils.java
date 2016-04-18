@@ -1,6 +1,6 @@
 package net.bondar.utils;
 
-import net.bondar.interfaces.IOperationHolder;
+import net.bondar.interfaces.IOperationUtils;
 import org.apache.log4j.Logger;
 
 import java.util.Arrays;
@@ -10,12 +10,12 @@ import java.util.List;
 /**
  * Provides storing and working with mathematical operations.
  */
-public class OperationHolder implements IOperationHolder {
+public class OperationUtils implements IOperationUtils {
 
     /**
      * Logger.
      */
-    private final static Logger log = Logger.getLogger(OperationHolder.class);
+    private final static Logger log = Logger.getLogger(OperationUtils.class);
 
     /**
      * List of the mathematical operations.
@@ -26,7 +26,7 @@ public class OperationHolder implements IOperationHolder {
      * Gets the mathematical operations sorted by priority.
      *
      * @return sorted list of the mathematical operations
-     * @see {@link IOperationHolder}
+     * @see {@link IOperationUtils}
      */
     public List<Operation> getOperationsByPriority() {
         log.info("-------- Gets operations by priority...");
@@ -40,7 +40,7 @@ public class OperationHolder implements IOperationHolder {
      * @param operation  current mathematical operation
      * @param expression string with expression to be checked
      * @return the mathematical operation which the first is found in the expression
-     * @see {@link IOperationHolder}
+     * @see {@link IOperationUtils}
      */
     public Operation findNextOperation(Operation operation, String expression) {
         if (operation == Operation.MUL || operation == Operation.DIV) {

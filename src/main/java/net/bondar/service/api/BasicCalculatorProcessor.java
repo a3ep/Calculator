@@ -4,7 +4,7 @@ import net.bondar.exceptions.CalculatorApplicationException;
 import net.bondar.interfaces.ICalculableProcessor;
 import net.bondar.interfaces.INegativeChecker;
 import net.bondar.interfaces.INumberBuilder;
-import net.bondar.interfaces.IOperationHolder;
+import net.bondar.interfaces.IOperationUtils;
 import net.bondar.utils.Operation;
 import org.apache.log4j.Logger;
 
@@ -21,7 +21,7 @@ public class BasicCalculatorProcessor implements ICalculableProcessor {
     /**
      * Operation holder.
      */
-    private IOperationHolder holder;
+    private IOperationUtils holder;
 
     /**
      * Negative expression checker.
@@ -40,7 +40,7 @@ public class BasicCalculatorProcessor implements ICalculableProcessor {
      * @param checker negative expression checker
      * @param builder number builder
      */
-    public BasicCalculatorProcessor(IOperationHolder holder,
+    public BasicCalculatorProcessor(IOperationUtils holder,
                                     INegativeChecker checker,
                                     INumberBuilder builder) {
         this.holder = holder;

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Interface for storing and working with mathematical operations.
  */
-public interface IOperationHolder {
+public interface IOperationUtils {
 
     /**
      * Gets the mathematical operations sorted by priority.

@@ -4,12 +4,12 @@ import net.bondar.exceptions.CalculatorApplicationException;
 import net.bondar.interfaces.ICalculableProcessor;
 import net.bondar.interfaces.INegativeChecker;
 import net.bondar.interfaces.INumberBuilder;
-import net.bondar.interfaces.IOperationHolder;
+import net.bondar.interfaces.IOperationUtils;
 import net.bondar.service.api.BasicCalculatorProcessor;
 import net.bondar.service.api.BracketsCalculatorProcessor;
 import net.bondar.utils.NegativeChecker;
 import net.bondar.utils.NumberBuilder;
-import net.bondar.utils.OperationHolder;
+import net.bondar.utils.OperationUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -39,7 +39,7 @@ public class CalculatorTest {
      * Initializes processor instance.
      */
     public static void start() {
-        IOperationHolder operationHolder = new OperationHolder();
+        IOperationUtils operationHolder = new OperationUtils();
         INegativeChecker negativeChecker = new NegativeChecker();
         INumberBuilder numberBuilder = new NumberBuilder();
         processor = new BracketsCalculatorProcessor(new BasicCalculatorProcessor(operationHolder, negativeChecker, numberBuilder));

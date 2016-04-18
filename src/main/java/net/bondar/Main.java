@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            IOperationHolder operationHolder = new OperationHolder();
+            IOperationUtils operationHolder = new OperationUtils();
             INegativeChecker negativeChecker = new NegativeChecker();
             INumberBuilder numberBuilder = new NumberBuilder();
             ICalculableProcessor processor = new BracketsCalculatorProcessor(new BasicCalculatorProcessor(operationHolder, negativeChecker, numberBuilder));
