@@ -6,7 +6,7 @@ import net.bondar.interfaces.INegativeChecker;
 import net.bondar.interfaces.INumberBuilder;
 import net.bondar.interfaces.IOperationHolder;
 import net.bondar.service.api.BasicCalculatorProcessor;
-import net.bondar.utils.BracketsCalculatorProcessor;
+import net.bondar.service.api.BracketsCalculatorProcessor;
 import net.bondar.utils.NegativeChecker;
 import net.bondar.utils.NumberBuilder;
 import net.bondar.utils.OperationHolder;

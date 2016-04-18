@@ -75,6 +75,28 @@ public enum Operation implements IOperation, IComparableOperation {
             log.info("-------------- Division: " + x + " / " + y);
             return x / y;
         }
+    },
+
+    /**
+     * Left bracket.
+     */
+    LEFT_BRACKET ("("){
+
+        @Override
+        public int calculate(int x, int y) {
+            throw new UnsupportedOperationException();
+        }
+    },
+
+    /**
+     * Right bracket.
+     */
+    RIGHT_BRACKET (")"){
+
+        @Override
+        public int calculate(int x, int y) {
+            throw new UnsupportedOperationException();
+        }
     };
 
     /**
@@ -91,6 +113,15 @@ public enum Operation implements IOperation, IComparableOperation {
     Operation(String operator, int priority) {
         this.operator = operator;
         this.priority = priority;
+    }
+
+    /**
+     * Creates <code>Operation</code> instance.
+     *
+     * @param operator the mathematical operator
+     */
+    Operation(String operator) {
+        this.operator = operator;
     }
 
     /**

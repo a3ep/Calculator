@@ -1,8 +1,8 @@
-package net.bondar.utils;
+package net.bondar.service.api;
 
 import net.bondar.interfaces.ICalculableProcessor;
 import net.bondar.interfaces.ICalculableProcessorDecorator;
-import net.bondar.service.api.BasicCalculatorProcessor;
+import net.bondar.utils.Operation;
 import org.apache.log4j.Logger;
 
 /**
@@ -38,8 +38,8 @@ public class BracketsCalculatorProcessor implements ICalculableProcessor, ICalcu
     @Override
     public int process(String expression) {
         log.info("Checks brackets...");
-        int lastIndex = expression.indexOf(")");
-        int firstIndex = expression.indexOf("(");
+        int lastIndex = expression.indexOf(Operation.RIGHT_BRACKET.getOperator());
+        int firstIndex = expression.indexOf(Operation.LEFT_BRACKET.getOperator());
         if (firstIndex != -1 && lastIndex != -1) {
             log.info("Processes expression in the brackets...");
             StringBuilder leftPart = new StringBuilder(expression.substring(0, firstIndex));
@@ -64,17 +64,17 @@ public class BracketsCalculatorProcessor implements ICalculableProcessor, ICalcu
         leftPart = leftPart.reverse();
         char[] arr = leftPart.toString().toCharArray();
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == '+') {
-                arr[i] = '-';
+            if (arr[i] == Operation.PLUS.getOperator().charAt(0)) {
+                arr[i] = Operation.MINUS.getOperator().charAt(0);
                 leftPart = new StringBuilder(new String(arr));
                 break;
-            } else if (arr[i] == '-') {
-                arr[i] = '+';
+            } else if (arr[i] == Operation.MINUS.getOperator().charAt(0)) {
+                arr[i] = Operation.PLUS.getOperator().charAt(0);
                 leftPart = new StringBuilder(new String(arr));
                 break;
             } else if (arr[i] == arr[arr.length - 1]) {
                 char[] newArr = new char[arr.length + 1];
-                newArr[newArr.length - 1] = '-';
+                newArr[newArr.length - 1] = Operation.MINUS.getOperator().charAt(0);
                 System.arraycopy(arr, 0, newArr, 0, arr.length);
                 leftPart = new StringBuilder(new String(newArr));
                 break;
