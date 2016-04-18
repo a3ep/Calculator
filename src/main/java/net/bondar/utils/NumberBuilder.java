@@ -15,44 +15,38 @@ public class NumberBuilder implements INumberBuilder {
     private final static Logger log = Logger.getLogger(NumberBuilder.class);
 
     /**
-     * Converts the received string with a number value to the number.
+     * Builds the number on the basis of expression string and expression part indexes.
      *
-     * @param stringNumber the string to be converted to the number
+     * @param startIndex start expression part index
+     * @param endIndex   end expression part index
+     * @param expression expression string
      * @return number value
      * @throws CalculatorApplicationException when the string with a number value has incorrect format
      * @see {@link INumberBuilder}
      */
-    public int buildNumber(String stringNumber) {
+    public int buildNumber(int startIndex, int endIndex, String expression) {
+        log.info("---------- Builds part of expression...");
+        String expressionPart = expression.substring(startIndex, endIndex);
+        String numberString;
+        if (expressionPart.length() == 0) {
+            numberString = "";
+        } else if (expression.indexOf(expressionPart) == 0) {
+            StringBuilder builder = new StringBuilder(expressionPart);
+            expressionPart = builder.reverse().toString();
+            expressionPart = findEndOfNumber(expressionPart);
+            numberString = builder.replace(0, builder.length(), expressionPart).reverse().toString();
+        } else {
+            numberString = findEndOfNumber(expressionPart);
+        }
         log.info("---------- Builds number...");
-        if (stringNumber.length() != 0) {
+        if (numberString.length() != 0) {
             try {
-                return Integer.parseInt(stringNumber);
+                return Integer.parseInt(numberString);
             } catch (NumberFormatException e) {
                 throw new CalculatorApplicationException(e.getMessage());
             }
         }
-        throw new CalculatorApplicationException("Error while building number -->" + stringNumber);
-    }
-
-    /**
-     * Builds a string with a number value based on the specified substring.
-     *
-     * @param str        specified substring
-     * @param expression string with expression
-     * @return string with a number value or empty string, if the specified substring is empty
-     */
-    public String buildStringNumber(String str, String expression) {
-        log.info("---------- Builds part of expression...");
-        if (str.length() == 0) {
-            return "";
-        }
-        if (expression.indexOf(str) == 0) {
-            StringBuilder builder = new StringBuilder(str);
-            str = builder.reverse().toString();
-            str = findEndOfNumber(str);
-            return builder.replace(0, builder.length(), str).reverse().toString();
-        }
-        return findEndOfNumber(str);
+        throw new CalculatorApplicationException("Error while building number -->" + numberString);
     }
 
     /**
@@ -65,7 +59,10 @@ public class NumberBuilder implements INumberBuilder {
         if (str.length() > 1) {
             char[] arr = str.toCharArray();
             for (int i = 0; i < arr.length; i++) {
-                if (arr[i] == '*' || arr[i] == '/' || arr[i] == '+' || arr[i] == '-') {
+                if (arr[i] == Operation.MUL.getOperator().charAt(0) ||
+                        arr[i] == Operation.DIV.getOperator().charAt(0) ||
+                        arr[i] == Operation.PLUS.getOperator().charAt(0) ||
+                        arr[i] == Operation.MINUS.getOperator().charAt(0)) {
                     return str.substring(0, i);
                 }
             }

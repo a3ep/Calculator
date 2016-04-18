@@ -35,7 +35,7 @@ public class OperationHolder implements IOperationHolder {
     }
 
     /**
-     * Checks the mathematical operation with the same priority and the returns which the first is found in the expression.
+     * Checks the mathematical operation with the same priority and returns an operator which is found first in the expression.
      *
      * @param operation  current mathematical operation
      * @param expression string with expression to be checked

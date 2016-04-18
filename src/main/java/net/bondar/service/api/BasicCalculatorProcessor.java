@@ -88,21 +88,17 @@ public class BasicCalculatorProcessor implements ICalculableProcessor {
     private int getExpressionValue(String expression, Operation op) {
         log.info("Calculates an intermediate value...");
         int opIndex;
-        int leftNumber;
-        int rightNumber;
-        String leftSubstring;
-        String rightSubstring;
+        Integer leftNumber;
+        Integer rightNumber;
         op = holder.checkOperator(op, expression);
         opIndex = expression.indexOf(op.getOperator());
         log.info("Searches right number...");
-        rightSubstring = builder.buildStringNumber(expression.substring(opIndex + 1), expression);
-        rightNumber = builder.buildNumber(rightSubstring);
+        rightNumber = builder.buildNumber(opIndex + 1, expression.length(), expression);
         log.info("Right number -> " + rightNumber);
         log.info("Searches left number...");
-        leftSubstring = builder.buildStringNumber(expression.substring(0, opIndex), expression);
-        leftNumber = builder.buildNumber(leftSubstring);
+        leftNumber = builder.buildNumber(0, opIndex, expression);
         log.info("Left number -> " + leftNumber);
-        return process(expression.substring(0, opIndex - leftSubstring.length()) + op.calculate(leftNumber, rightNumber)
-                + expression.substring(opIndex + rightSubstring.length() + 1));
+        return process(expression.substring(0, opIndex - leftNumber.toString().length()) + op.calculate(leftNumber, rightNumber)
+                + expression.substring(opIndex + rightNumber.toString().length() + 1));
     }
 }

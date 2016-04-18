@@ -4,6 +4,7 @@ package net.bondar.interfaces;
  * Interface to check whether an expression is negative and the appropriate processing of expression.
  */
 public interface INegativeChecker {
+
     /**
      * Checks whether an expression is negative.
      *

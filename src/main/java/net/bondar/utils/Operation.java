@@ -6,7 +6,7 @@ import net.bondar.interfaces.IOperation;
 import org.apache.log4j.Logger;
 
 /**
- *
+ * Contains mathematical operation.
  */
 public enum Operation implements IOperation, IComparableOperation {
     /**

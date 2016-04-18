@@ -6,6 +6,7 @@ import net.bondar.interfaces.IResultObject;
  * Contains an implementation of empty <code>ResultObject</code>.
  */
 public class NullObject implements IResultObject {
+
     /**
      * Result status.
      */

@@ -6,19 +6,12 @@ package net.bondar.interfaces;
 public interface INumberBuilder {
 
     /**
-     * Converts the received string with a number value to the number.
+     * Builds the number on the basis of expression string and expression part indexes.
      *
-     * @param stringNumber the string to be converted to the number
+     * @param startIndex start expression part index
+     * @param endIndex   end expression part index
+     * @param expression expression string
      * @return number value
      */
-    int buildNumber(String stringNumber);
-
-    /**
-     * Builds a string with a number value based on the specified substring.
-     *
-     * @param str        specified substring
-     * @param expression string with expression
-     * @return string with a number value
-     */
-    String buildStringNumber(String str, String expression);
+    int buildNumber(int startIndex, int endIndex, String expression);
 }

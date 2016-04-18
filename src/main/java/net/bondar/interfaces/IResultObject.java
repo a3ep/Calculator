@@ -7,6 +7,7 @@ import net.bondar.domain.ResultObject;
  * Interface for a result object ({@link ResultObject} or {@link NullObject}).
  */
 public interface IResultObject {
+
     /**
      * Gets a result status.
      *
