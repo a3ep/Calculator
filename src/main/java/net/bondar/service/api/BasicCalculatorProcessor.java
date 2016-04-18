@@ -90,7 +90,7 @@ public class BasicCalculatorProcessor implements ICalculableProcessor {
         int opIndex;
         Integer leftNumber;
         Integer rightNumber;
-        op = holder.checkOperator(op, expression);
+        op = holder.findNextOperation(op, expression);
         opIndex = expression.indexOf(op.getOperator());
         log.info("Searches right number...");
         rightNumber = builder.buildNumber(opIndex + 1, expression.length(), expression);

@@ -42,7 +42,7 @@ public class OperationHolder implements IOperationHolder {
      * @return the mathematical operation which the first is found in the expression
      * @see {@link IOperationHolder}
      */
-    public Operation checkOperator(Operation operation, String expression) {
+    public Operation findNextOperation(Operation operation, String expression) {
         if (operation == Operation.MUL || operation == Operation.DIV) {
             return swap(expression, operation, Operation.MUL, Operation.DIV);
         }

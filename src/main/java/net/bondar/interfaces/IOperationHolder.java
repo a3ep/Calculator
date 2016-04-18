@@ -17,11 +17,11 @@ public interface IOperationHolder {
     List<Operation> getOperationsByPriority();
 
     /**
-     * Checks the mathematical operation with the same priority and the returns which the first is found in the expression.
+     * Checks the mathematical operation with the same priority and returns an operator which is found first in the expression.
      *
      * @param operation  current mathematical operation
      * @param expression string with expression to be checked
      * @return the mathematical operation which the first is found in the expression
      */
-    Operation checkOperator(Operation operation, String expression);
+    Operation findNextOperation(Operation operation, String expression);
 }
